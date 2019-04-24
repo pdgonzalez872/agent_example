@@ -1,21 +1,13 @@
 # AgentExample
 
-**TODO: Add description**
+Playing with Agents.
 
-## Installation
+## How to:
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `agent_example` to your list of dependencies in `mix.exs`:
+Go to `application.ex`. That's where we decide how boot will look like.
+Feel free to change `AgentExample.create_a_bunch_of_agents(5_000)` to see how
+the system behaves.
 
-```elixir
-def deps do
-  [
-    {:agent_example, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/agent_example](https://hexdocs.pm/agent_example).
-
+Call `AgentExample.get_state_for_agents()` to see the current state for all Agents.
+Call `AgentExample.update_all_agents()` to update all agents, then call
+`get_state_for_agents/0` again to verify.
