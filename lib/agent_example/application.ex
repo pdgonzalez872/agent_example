@@ -6,14 +6,20 @@ defmodule AgentExample.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: AgentExample.Worker.start_link(arg)
-      # {AgentExample.Worker, arg},
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
+    # create this group so agents can join
+    :ok = :pg2.create(:agent_group)
+
+    # create the agents, can try with 5_000 of them, even with 200k!
+    # (That will take a little bit)
+    AgentExample.create_a_bunch_of_agents(5_000)
+
+    # boot up `iex` like this: `iex -S mix` and call
+    # `AgentExample.get_state_for_agents()`
+    # to get their state
+
     opts = [strategy: :one_for_one, name: AgentExample.Supervisor]
     Supervisor.start_link(children, opts)
   end
